@@ -1,8 +1,8 @@
 
 //board
 var blockSize = 25;
-var rows = 20;
-var cols = 20;
+var rows = 28;
+var cols = 28;
 var board;
 var context; 
 
@@ -20,6 +20,7 @@ var foodX;
 var foodY;
 
 var gameOver = false;
+var alertConfirm;
 
 window.onload = function() {
     board = document.getElementById("board");
@@ -37,10 +38,10 @@ function update() {
     if (gameOver) {
         return;
     }
-    context.fillStyle="black";
+    context.fillStyle="blue";
     context.fillRect(0, 0, board.width, board.height);
 
-    context.fillStyle="red";
+    context.fillStyle="lime";
     context.fillRect(foodX, foodY, blockSize, blockSize);
 
     if (snakeX == foodX && snakeY == foodY) {
@@ -65,15 +66,16 @@ function update() {
 
     if (snakeX < 0 || snakeX > cols*blockSize || snakeY < 0 || snakeY > rows*blockSize) {
         gameOver = true;
-        alert("Game Over");
+        alertConfirm = confirm('Game Over');
     }
 
     for (let i = 0; i < snakeBody.length; i++) {
         if (snakeX == snakeBody[i][0] && snakeY == snakeBody[i][1]) {
             gameOver = true;
-            alert("Game Over")
+            alert('Game Over')
         }
     }
+    
 
 }
 
